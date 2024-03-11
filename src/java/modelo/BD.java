@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class BD {
-    private final String server = "jdbc:mysql://localhost:3306/calidad";
+    
+    private final String server = "jdbc:mysql://127.0.0.1:3306/calidad?useTimeZone=true&serverTimezone=UTC&autoReconnect=true&useSSL=false";
     private final String user = "root";
     private final String pass = "root";
     public Connection conn;
