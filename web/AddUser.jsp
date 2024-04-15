@@ -80,20 +80,46 @@
     </div>
     <a href="javascript:validaEmail()">PRUEBA</a>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
 
-        function validaEmail() {
-            var email = document.getElementById('Email');
-            var validEmail = /^\w+([.-_+]?\w+)@\w+([.-]?\w+)(\.\w{2,10})+$/;
+                                function validaEmail() {
+                                    var email = document.getElementById('Email');
+                                    var validEmail = /^\w+([.-_+]?\w+)@\w+([.-]?\w+)(\.\w{2,10})+$/;
 
-            if (validEmail.test(email.value)) {
-                document.getElementById("save").sumit();
-                //return true;
-            } else {
-                alert('Email no valido');
-                //return false;
-            }
-        }
+                                    if (validEmail.test(email.value)) {
+                                        document.getElementById("save").submit();
+                                        //return true;
+                                    } else {
+                                        alert('Email no valido');
+                                        //return false;
+                                    }
+                                }
+
+                                $(document).ready(function () {
+                                    var queryDict = {}
+                                    location.search.substr(1).split("&").forEach(function (item) {
+                                        queryDict[item.split("=")[0]] = item.split("=")[1]
+                                    })
+                                    console.log(queryDict);
+//
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: "Add user",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+//
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Oops...",
+                                        text: "Something went wrong!",
+                                        footer: '<a href="#">Why do I have this issue?</a>'
+                                    });
+                                });
+
+
 
     </script>
 </body>

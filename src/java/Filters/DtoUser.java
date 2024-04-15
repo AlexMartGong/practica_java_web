@@ -1,13 +1,12 @@
-package modelo;
+package Filters;
 
-public class User {
-    
-    int id;
-    String name;
-    String lastName;
-    String email;
-    int rol;
-    boolean estatus;
+public class DtoUser {
+    private int id;
+    private String name;
+    private String lastName;
+    private String email;
+    private int rol;
+    private boolean estatus;
 
     public int getId() {
         return id;
