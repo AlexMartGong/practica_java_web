@@ -4,6 +4,8 @@
  */
 
 import Filters.DaoUser;
+import Filters.DtoUser;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,15 +13,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.BD;
-import Filters.DtoUser;
+import java.util.List;
 
 /**
  *
  * @author te210
  */
-@WebServlet(urlPatterns = {"/SaveUser"})
-public class SaveUser extends HttpServlet {
+@WebServlet(urlPatterns = {"/getUser"})
+public class getUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,33 +33,13 @@ public class SaveUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("Name");
-        String email = request.getParameter("Email");
-        String lastName = request.getParameter("Lastname");
-        String rol = request.getParameter("Rol");
-
-        boolean res = false;
-        try {
-            DaoUser dto = new DaoUser();
-            DtoUser user = new DtoUser();
-            user.setName(name);
-            user.setEmail(email);
-            user.setLastName(lastName);
-            user.setRol("1".equals(rol) ? 1 : 2);
-            
-            res = dto.insertUser(user);
-            System.out.println(res);
-            
-            if (res) {
-                response.sendRedirect("AddUser.jsp?res=1");
-            } else {
-                response.sendRedirect("AddUser.jsp?res=2");
-            }
-            
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-
+        
+        DaoUser dao = new DaoUser();
+        List<DtoUser> listUser = dao.List();
+        request.setAttribute("user", listUser);
+        RequestDispatcher rd = request.getRequestDispatcher("User.jsp");
+        rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

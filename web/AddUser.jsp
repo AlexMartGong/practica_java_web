@@ -71,7 +71,7 @@
                     <div class="row m-2">
                         <div class="col-lg-6 col-md-6">
                             <input type="submit" value="GUARDAR" class="btn btn-success" onclick="javascript: validaEmail(); return false">
-                            <a href="#" class="btn btn-danger">CANCELAR</a>
+                            <a href="index.html" class="btn btn-danger">CANCELAR</a>
                         </div>
                     </div>
 
@@ -101,22 +101,25 @@
                                     location.search.substr(1).split("&").forEach(function (item) {
                                         queryDict[item.split("=")[0]] = item.split("=")[1]
                                     })
-                                    console.log(queryDict);
-//
-                                    Swal.fire({
-                                        position: "top-end",
-                                        icon: "success",
-                                        title: "Add user",
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-//
-                                    Swal.fire({
-                                        icon: "error",
-                                        title: "Oops...",
-                                        text: "Something went wrong!",
-                                        footer: '<a href="#">Why do I have this issue?</a>'
-                                    });
+                                    console.log(queryDict['res']);
+
+                                    if (queryDict['res'] == 1) {
+                                        Swal.fire({
+                                            position: "top-end",
+                                            icon: "success",
+                                            title: "User save",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                    } else if (queryDict['res'] == 2) {
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Error add user...",
+                                            text: "Fabor de intentar mas tarde",
+                                            footer: ''
+                                        });
+                                    }
+
                                 });
 
 
