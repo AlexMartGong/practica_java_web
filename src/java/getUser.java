@@ -35,7 +35,9 @@ public class getUser extends HttpServlet {
             throws ServletException, IOException {
         
         DaoUser dao = new DaoUser();
-        List<DtoUser> listUser = dao.List();
+        List<DtoUser> listUser = dao.getAllUser();
+        //List<DtoUser> listUser = dao.getAllUserStament();
+        
         request.setAttribute("user", listUser);
         RequestDispatcher rd = request.getRequestDispatcher("User.jsp");
         rd.forward(request, response);
