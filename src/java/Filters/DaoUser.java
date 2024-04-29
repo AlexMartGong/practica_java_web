@@ -90,5 +90,28 @@ public class DaoUser extends BD {
 
         return listUser;
     }
+    
+    public DtoUser getUser(String id) {
+        DtoUser user = new DtoUser();
+        
+        try {
+            String sql = "SELECT * FROM users WHERE id="+id;
+            PreparedStatement pst = conn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                user.setId(rs.getInt(1));
+                user.setName(rs.getString(2));
+                user.setEmail(rs.getString(3));
+                user.setLastName(rs.getString(4));
+                user.setRol(rs.getInt(5));
+                user.setEstatus(rs.getBoolean(6));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error getUser: " + e.getMessage());
+        }
+        
+        return user;
+    }
 
 }

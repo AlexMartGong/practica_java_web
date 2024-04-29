@@ -25,8 +25,9 @@
                     <th>Name</th>
                     <th>Lastname</th>
                     <th>Email</th>
-                    <th>Rol</th>
-                    <th>Estatus</th>
+                    <th style="text-align: center">Rol</th>
+                    <th style="text-align: center">Estatus</th>
+                    <th style="text-align: center">Tareas</th>
                 </tr>
                 <c:forEach items="${user}" var="user">
                     <tr>
@@ -34,14 +35,19 @@
                         <td>${user.getName()}</td>
                         <td>${user.getLastName()}</td>
                         <td>${user.getEmail()}</td>
-                        <td>${user.getRol()}</td>
-                        <td>
+                        <td style="text-align: center">${user.getRol()}</td>
+                        <td style="text-align: center">
                             <c:if test="${user.isEstatus() == true}">
                                 <i class="text-success fa-solid fa-user-check"></i>
                             </c:if>
                             <c:if test="${user.isEstatus() == false}">
                                 <i class="text-danger fa-solid fa-user-slash"></i>
                             </c:if>
+                        </td>
+                        <td style="text-align: center">
+                            <a href="Modify?Id=${user.getId()}"><i class="text-primary fa-solid fa-user-pen"></i></a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="delete?Id=${user.getId()}"><i class="text-danger fa-solid fa-user-minus"></i></a>
                         </td>
                     </tr>
                 </c:forEach>
