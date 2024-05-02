@@ -4,6 +4,7 @@
     Author     : te210
 --%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,34 +20,48 @@
             </div>
             <div class="cord-boby">
                 <body>
-                    <form action="SaveUser" method="POST" id="save">
+                    <form action="UserModify" method="POST" id="save">
+                        
+                        
+                        
+                        <input class="form-control" type="hidden" name="Id" value="${user.getId()}" id="Id">
+                        <input class="form-control" type="hidden" name="Estatus" value="${user.isEstatus()}" id="Estatus">
+                        
                         <div class="row m-2">
 
                             <div class="col-sm-12 col-md-6 col-lg-5">
 
                                 <label for="Name">Nombre</label>
-                                <input class="form-control" type="text" name="Name" value="" id="Name" placeholder="Ingresa name" required>
+                                <input class="form-control" type="text" name="Name" value="${user.getName()}" id="Name" placeholder="Ingresa name" required>
 
                             </div>
 
                             <div class="col-sm-12 col-md-6 col-lg-5">
                                 <label for="Lastname">Apellido</label>
-                                <input class="form-control" type="text" name="Lastname" value="" id="Lastname" placeholder="Ingresa lastname" required>
+                                <input class="form-control" type="text" name="Lastname" value="${user.getLastName()}" id="Lastname" placeholder="Ingresa lastname" required>
                             </div>
                         </div>
 
                         <div class="row m-2">
                             <div class="col-lg-5 col-md-6">
                                 <label for="Email">Email</label>
-                                <input class="form-control" type="text" name="Email" value="" id="Email" placeholder="Ingresa Imail" required>
+                                <input class="form-control" type="text" name="Email" value="${user.getEmail()}" id="Email" placeholder="Ingresa Imail" required>
                             </div>
                         </div>
 
                         <div class="row m-2">
                             <div class="col-lg-5 col-md-6">
+                                <label for="Rol">Rol</label>
                                 <select class="form-select mt-3" name="Rol" id="Rol">
-                                    <option value="1">Administrador</option>
-                                    <option value="2">Usuario</option>
+                                    <c:if test="${user.getRol() == 1}">
+                                        <option value="1" selected>Administrador</option>
+                                        <option value="1">Usuario</option>
+                                    </c:if>
+
+                                    <c:if test="${user.getRol() == 2}">
+                                        <option value="2" selected>Usuario</option>
+                                        <option value="2">Administrador</option>
+                                    </c:if>
                                 </select>
                             </div>
                         </div>

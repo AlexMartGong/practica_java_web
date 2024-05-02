@@ -35,19 +35,27 @@
                         <td>${user.getName()}</td>
                         <td>${user.getLastName()}</td>
                         <td>${user.getEmail()}</td>
-                        <td style="text-align: center">${user.getRol()}</td>
                         <td style="text-align: center">
-                            <c:if test="${user.isEstatus() == true}">
-                                <i class="text-success fa-solid fa-user-check"></i>
+                            <c:if test="${user.getRol() == 1}">
+                                <i class="fa-solid fa-user-secret fa-2x"></i>
                             </c:if>
-                            <c:if test="${user.isEstatus() == false}">
-                                <i class="text-danger fa-solid fa-user-slash"></i>
+
+                            <c:if test="${user.getRol() == 2}">
+                                <i class="fa-solid fa-user fa-2x"></i>
                             </c:if>
                         </td>
                         <td style="text-align: center">
-                            <a href="Modify?Id=${user.getId()}"><i class="text-primary fa-solid fa-user-pen"></i></a>
+                            <c:if test="${user.isEstatus() == true}">
+                                <i class="text-success fa-solid fa-user-check fa-2x"></i>
+                            </c:if>
+                            <c:if test="${user.isEstatus() == false}">
+                                <i class="text-danger fa-solid fa-user-slash fa-2x"></i>
+                            </c:if>
+                        </td>
+                        <td style="text-align: center">
+                            <a href="Modify?Id=${user.getId()}"><i class="text-primary fa-solid fa-user-pen fa-2x"></i></a>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="delete?Id=${user.getId()}"><i class="text-danger fa-solid fa-user-minus"></i></a>
+                            <a href="delete?Id=${user.getId()}"><i class="text-danger fa-solid fa-user-minus fa-2x"></i></a>
                         </td>
                     </tr>
                 </c:forEach>

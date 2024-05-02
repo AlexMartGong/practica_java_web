@@ -61,6 +61,7 @@
 
                     <div class="row m-2">
                         <div class="col-lg-5 col-md-6">
+                            <label for="Rol">Rol</label>
                             <select class="form-select mt-3" name="Rol" id="Rol">
                                 <option value="1">Administrador</option>
                                 <option value="2">Usuario</option>
