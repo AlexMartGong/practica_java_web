@@ -72,7 +72,7 @@
                     <div class="row m-2">
                         <div class="col-lg-6 col-md-6">
                             <input type="submit" value="GUARDAR" class="btn btn-success" onclick="javascript: validaEmail(); return false">
-                            <a href="index.html" class="btn btn-danger">CANCELAR</a>
+                            <a href="getUser" class="btn btn-danger">CANCELAR</a>
                         </div>
                     </div>
 

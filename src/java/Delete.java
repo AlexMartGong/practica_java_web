@@ -4,6 +4,8 @@
  */
 
 import Filters.DaoUser;
+import Filters.DtoUser;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,14 +14,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import modelo.BD;
-import Filters.DtoUser;
 
 /**
  *
  * @author te210
  */
-@WebServlet(urlPatterns = {"/UserModify"})
-public class UserModify extends HttpServlet {
+@WebServlet(urlPatterns = {"/Delete"})
+public class Delete extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,39 +33,9 @@ public class UserModify extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("Id");
-        String name = request.getParameter("Name");
-        String email = request.getParameter("Email");
-        String lastName = request.getParameter("Lastname");
-        int rol = Integer.parseInt(request.getParameter("Rol"));
+        int id = Integer.parseInt(request.getParameter("Id"));
         boolean Estatus = (Boolean.parseBoolean(request.getParameter("Estatus")));
-        
-        boolean res = false;
-        try {
-            DaoUser dto = new DaoUser();
-            DtoUser user = new DtoUser();
-            
-            user.setId(Integer.parseInt(id));
-            user.setName(name);
-            user.setEmail(email);
-            user.setLastName(lastName);
-            user.setRol("1".equals(rol) ? 1 : 2);
-            user.setEstatus(Estatus);
-            
-            //res = dto.insertUser(user);
-            res = dto.updateUser(user);
-            System.out.println(res);
-            
-            if (res) {
-                response.sendRedirect("getUser");
-            } else {
-                response.sendRedirect("getUser");
-            }
-            
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
