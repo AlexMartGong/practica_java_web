@@ -70,9 +70,9 @@
             </table>
         </div>
 
-        <form action="Delete" method="POST">
-            <input type="hidden" id="Id">
-            <input type="hidden" id="Estatus">
+        <form action="Delete" method="POST" id="Delete">
+            <input type="hidden" id="Id" name="Id">
+            <input type="hidden" id="Estatus" name="Estatus">
         </form>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -105,6 +105,7 @@
                     if (result.isConfirmed) {
                         document.getElementById("Id").value = Id;
                         document.getElementById("Estatus").value = Estatus;
+                        document.getElementById("Delete").submit();
                     }
                 });
             }

@@ -4,16 +4,12 @@
  */
 
 import Filters.DaoUser;
-import Filters.DtoUser;
-import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.BD;
 
 /**
  *
@@ -33,8 +29,14 @@ public class Delete extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         int id = Integer.parseInt(request.getParameter("Id"));
         boolean Estatus = (Boolean.parseBoolean(request.getParameter("Estatus")));
+        Estatus = !Estatus;
+        
+        DaoUser dao = new DaoUser();
+        boolean result = dao.deleteUser(id, Estatus);
+        response.sendRedirect("getUser");
 
     }
 

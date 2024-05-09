@@ -90,15 +90,15 @@ public class DaoUser extends BD {
 
         return listUser;
     }
-    
+
     public DtoUser getUser(String id) {
         DtoUser user = new DtoUser();
-        
+
         try {
-            String sql = "SELECT * FROM users WHERE id="+id;
+            String sql = "SELECT * FROM users WHERE id=" + id;
             PreparedStatement pst = conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
-            
+
             if (rs.next()) {
                 user.setId(rs.getInt(1));
                 user.setName(rs.getString(2));
@@ -110,11 +110,11 @@ public class DaoUser extends BD {
         } catch (SQLException e) {
             System.out.println("Error getUser: " + e.getMessage());
         }
-        
+
         return user;
     }
-    
-        public boolean updateUser(DtoUser dto) {
+
+    public boolean updateUser(DtoUser dto) {
         boolean result;
         String sql = "UPDATE users SET name=?, mail=?, last_name=?, rol=?, estatus=? WHERE id=?";
         try {
@@ -128,6 +128,25 @@ public class DaoUser extends BD {
             pst.setInt(6, dto.getId());
 
             pst.executeUpdate();
+
+            result = true;
+        } catch (SQLException e) {
+            System.out.println("Error insert user: " + e.getMessage());
+            result = false;
+        }
+        return result;
+    }
+    
+        public boolean deleteUser(int id, boolean estatus) {
+        boolean result;
+        String sql = "UPDATE users SET estatus=? WHERE id=?";
+        try {
+            PreparedStatement pst = conn.prepareStatement(sql);
+
+            pst.setBoolean(1, estatus);
+            pst.setInt(2, id);
+
+            pst.execute();
 
             result = true;
         } catch (SQLException e) {
