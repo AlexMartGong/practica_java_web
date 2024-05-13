@@ -9,8 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.BD;
 
+/**
+ *
+ * @author te210
+ */
 public class DaoUser extends BD {
 
+    /**
+     *
+     * @param dto
+     * @return
+     */
     public boolean insertUser(DtoUser dto) {
         boolean result;
         String sql = "INSERT INTO users VALUES(0,?,?,?,?,?)";
@@ -33,6 +42,10 @@ public class DaoUser extends BD {
         return result;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<DtoUser> getAllUser() {
         List<DtoUser> listUser = new ArrayList<>();
 
@@ -62,6 +75,10 @@ public class DaoUser extends BD {
         return listUser;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<DtoUser> getAllUserStament() {
         List<DtoUser> listUser = new ArrayList<>();
 
@@ -91,6 +108,11 @@ public class DaoUser extends BD {
         return listUser;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public DtoUser getUser(String id) {
         DtoUser user = new DtoUser();
 
@@ -114,6 +136,11 @@ public class DaoUser extends BD {
         return user;
     }
 
+    /**
+     *
+     * @param dto
+     * @return
+     */
     public boolean updateUser(DtoUser dto) {
         boolean result;
         String sql = "UPDATE users SET name=?, mail=?, last_name=?, rol=?, estatus=? WHERE id=?";
@@ -137,7 +164,14 @@ public class DaoUser extends BD {
         return result;
     }
     
-        public boolean deleteUser(int id, boolean estatus) {
+    /**
+     * Metodo que permite realizar una baja logica de un usuario
+     * esto me permite desactivar/activar los usuarios del sistema
+     * @param id es un parametro entero que hace referencia a un usuario
+     * @param estatus parametro estatus este especificara el nuevo estatus que tendra
+     * @return regresa un bolor booleano si ejecuto correctamente regresa true, si algo salio mal retorna un false
+     */
+    public boolean deleteUser(int id, boolean estatus) {
         boolean result;
         String sql = "UPDATE users SET estatus=? WHERE id=?";
         try {
